@@ -1,5 +1,5 @@
 import streamlit as st
-from google import genai
+import google.generativeai as genai
 
 # ضبط إعدادات الصفحة
 st.set_page_config(page_title="Rabbit Search", page_icon="🐇", layout="centered")
@@ -13,13 +13,12 @@ query = st.text_input("", placeholder="ابحث في Rabbit عن أي سؤال..
 if query:
     with st.spinner("جاري القفز بالنتائج... 🐇"):
         try:
-            # قراءة المفتاح من Streamlit Secrets أونلاين
-            client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+            # تهيئة المفتاح بالطريقة التقليدية المستقرة
+            genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
             
-            response = client.models.generate_content(
-                model="gemini-3.8-flash",
-                contents=query
-            )
+            # استخدام الموديل المباشر
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(query)
             
             st.markdown("---")
             st.subheader("نتيجة البحث الذكية:")
