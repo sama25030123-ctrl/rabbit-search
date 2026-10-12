@@ -13,11 +13,9 @@ query = st.text_input("", placeholder="ابحث في Rabbit عن أي سؤال..
 if query:
     with st.spinner("جاري القفز بالنتائج... 🐇"):
         try:
-            # تهيئة المفتاح بالطريقة التقليدية المستقرة
             genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
             
-            # استخدام الموديل المباشر
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.5-flash')
             response = model.generate_content(query)
             
             st.markdown("---")
@@ -25,4 +23,12 @@ if query:
             st.write(response.text)
             
         except Exception as e:
-            st.error(f"حدث خطأ أثناء البحث: {e}")
+            # لو الموديل ده مش عامل مابنج، نجرب الموديل العام
+            try:
+                model = genai.GenerativeModel('gemini-pro')
+                response = model.generate_content(query)
+                st.markdown("---")
+                st.subheader("نتيجة البحث الذكية:")
+                st.write(response.text)
+            except Exception as err:
+                st.error(f"حدث خطأ أثناء البحث: {err}")
