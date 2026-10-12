@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabbit - محرك البحث الذكي</title>
+    <style>
+        body {
+            background-color: #1f1b24; /* لون خلفية غامق شيك */
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .logo {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #f2a6d0;
+            letter-spacing: 2px;
+        }
+        .search-container {
+            width: 80%;
+            max-width: 600px;
+        }
+        .search-box {
+            background: white;
+            border-radius: 30px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            padding: 5px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- اسم محرك البحث الجديد -->
+    <div class="logo">Rabbit 🐇</div>
+
+    <!-- شريط البحث -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث في Rabbit أو اسأل الذكاء الاصطناعي...">
+        </div>
+    </div>
+
+    <script>
+        // لو حابة لما تدوسي Enter يبحث أو ينفذ حاجة
+        const input = document.getElementById('searchInput');
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                alert('جاري البحث عن: ' + input.value);
+                // هنا ممكن نربطه بصفحة بايثون أو API بعدين
+            }
+        });
+    </script>
+
+</body>
+</html>
