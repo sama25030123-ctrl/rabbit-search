@@ -16,7 +16,7 @@ if query:
             genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
             
             # تجربة الموديل
-            model = genai.GenerativeModel('gemini-1.5-pro')
+            model = genai.GenerativeModel("gemini-3.8-flash",)
             response = model.generate_content(query)
             
             st.markdown("---")
